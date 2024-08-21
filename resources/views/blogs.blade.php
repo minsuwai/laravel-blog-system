@@ -4,10 +4,10 @@
     <x-hero></x-hero>
 
     <!-- blogs section -->
-    <x-blog-section></x-blog-section>
+    <x-blogs-section :blogs="$blogs" />
 
     <!-- subscribe new blogs -->
-    <x-subscribe></x-subscribe>
+    <x-subscribe />
 
     <!-- footer -->
 
