@@ -16,7 +16,8 @@ Route::get('/', function () {
         // eager load // lazy loading
         // 'blogs' => Blog::with('category', 'author')->get() 
 
-        'blogs' => Blog::latest()->get()
+        'blogs' => Blog::latest()->get(),
+        'categories' => Category::all()
     ]);
 });
 
@@ -32,7 +33,10 @@ Route::get('/categories/{category:slug}', function (Category $category) {
         //eager load
         // 'blogs' => $category->blogs->load('category', 'author')
 
-        'blogs' => $category->blogs
+        'blogs' => $category->blogs,
+        'categories' => Category::all(),
+        'currentCategory' => $category
+
     ]);
 });
 
@@ -41,6 +45,8 @@ Route::get('/users/{user:username}', function (User $user) {
         //eager load
         // 'blogs' => $user->blogs->load('category', 'author') 
 
-        'blogs' => $user->blogs
+        'blogs' => $user->blogs,
+        'categories' => Category::all()
+
     ]);
 });
