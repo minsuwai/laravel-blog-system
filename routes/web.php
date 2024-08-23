@@ -12,11 +12,16 @@ Route::get('/', function () {
     //     logger($query->sql);
     // });
 
+    $blogs = Blog::latest();
+    if (request('search')) {
+        $blogs = $blogs->where('title', 'like', '%' . request('search') . '%');
+    }
+
     return view('blogs', [
         // eager load // lazy loading
         // 'blogs' => Blog::with('category', 'author')->get() 
 
-        'blogs' => Blog::latest()->get(),
+        'blogs' => $blogs->get(),
         'categories' => Category::all()
     ]);
 });
