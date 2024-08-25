@@ -13,6 +13,7 @@ Route::get('/', function () {
     // });
 
     $blogs = Blog::latest();
+    // conditional query
     if (request('search')) {
         $blogs = $blogs->where('title', 'like', '%' . request('search') . '%');
     }
