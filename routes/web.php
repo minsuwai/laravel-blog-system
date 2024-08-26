@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Blog;
 use App\Models\Category;
@@ -7,32 +8,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-Route::get('/', function () {
-    // DB::listen(function ($query) {
-    //     logger($query->sql);
-    // });
+Route::get('/', [BlogController::class, 'index']);
 
-    $blogs = Blog::latest();
-    // conditional query
-    if (request('search')) {
-        $blogs = $blogs->where('title', 'like', '%' . request('search') . '%');
-    }
-
-    return view('blogs', [
-        // eager load // lazy loading
-        // 'blogs' => Blog::with('category', 'author')->get() 
-
-        'blogs' => $blogs->get(),
-        'categories' => Category::all()
-    ]);
-});
-
-Route::get('/blogs/{blog:slug}', function (Blog $blog) {
-    return view('blog', [
-        'blog' => $blog,
-        'randomBlogs' => Blog::inRandomOrder()->take(3)->get()
-    ]);
-})->where('blog', '[A-z\d\-_]+');
+Route::get('/blogs/{blog:slug}', [BlogController::class, 'show'])->where('blog', '[A-z\d\-_]+');
 
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view('blogs', [

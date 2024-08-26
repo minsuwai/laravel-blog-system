@@ -14,6 +14,15 @@ class Blog extends Model
     // added relation from start Blog
     protected $with = ['category', 'author'];
 
+    //Blog::latest()->filter()
+    public function scopeFilter($query)
+    {
+        $query->when(request('search'), function ($query, $search) {
+            $query->where('title', 'like', '%' . $search . '%')
+                ->orWhere('body', 'like', '%' . $search . '%');
+        });
+    }
+
     public function category()
     {
         // hasOne hasMany belongsTo belongsToMany
