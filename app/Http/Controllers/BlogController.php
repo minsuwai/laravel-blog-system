@@ -20,7 +20,7 @@ class BlogController extends Controller
             // eager load // lazy loading
             // 'blogs' => Blog::with('category', 'author')->get() 
 
-            'blogs' => $this->getBlogs(),
+            'blogs' => Blog::latest()->filter(request(['search']))->get(),
             'categories' => Category::all()
         ]);
     }
@@ -33,21 +33,21 @@ class BlogController extends Controller
         ]);
     }
 
-    protected function getBlogs()
-    {
-        return Blog::latest()->filter()->get();
-        // $query = Blog::latest();
-        // conditional query
-        // if (request('search')) {
-        //     $blogs = $blogs->where('title', 'like', '%' . request('search') . '%')
-        //         ->orWhere('body', 'like', '%' . request('search') . '%');
-        // }
+    // protected function getBlogs()
+    // {
+    //     return Blog::latest()->filter()->get();
+    //     // $query = Blog::latest();
+    //     // conditional query
+    //     // if (request('search')) {
+    //     //     $blogs = $blogs->where('title', 'like', '%' . request('search') . '%')
+    //     //         ->orWhere('body', 'like', '%' . request('search') . '%');
+    //     // }
 
-        // $query->when(request('search'), function ($query, $search) {
-        //     $query->where('title', 'like', '%' . $search . '%')
-        //         ->orWhere('body', 'like', '%' . $search . '%');
-        // });
+    //     // $query->when(request('search'), function ($query, $search) {
+    //     //     $query->where('title', 'like', '%' . $search . '%')
+    //     //         ->orWhere('body', 'like', '%' . $search . '%');
+    //     // });
 
-        // return $query->get();
-    }
+    //     // return $query->get();
+    // }
 }

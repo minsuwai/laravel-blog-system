@@ -15,11 +15,13 @@ class Blog extends Model
     protected $with = ['category', 'author'];
 
     //Blog::latest()->filter()
-    public function scopeFilter($query)
+    public function scopeFilter($query, $filter)
     {
-        $query->when(request('search'), function ($query, $search) {
-            $query->where('title', 'like', '%' . $search . '%')
-                ->orWhere('body', 'like', '%' . $search . '%');
+        $query->when($filter['search'] ?? false, function ($query, $search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('body', 'like', '%' . $search . '%');
+            });
         });
     }
 
