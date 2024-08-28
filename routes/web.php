@@ -19,8 +19,6 @@ Route::get('/users/{user:username}', function (User $user) {
         //eager load
         // 'blogs' => $user->blogs->load('category', 'author') 
 
-        'blogs' => $user->blogs,
-        'categories' => Category::all()
-
+        'blogs' => $user->blogs
     ]);
 });
