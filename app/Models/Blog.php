@@ -21,6 +21,7 @@ class Blog extends Model
             $query->where(function ($query) use ($search) {
                 $query->where('title', 'like', '%' . $search . '%')
                     ->orWhere('body', 'like', '%' . $search . '%');
+
             });
         });
         $query->when($filter['category'] ?? false, function ($query, $slug) {
