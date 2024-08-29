@@ -12,8 +12,6 @@ Route::get('/', [BlogController::class, 'index']);
 
 Route::get('/blogs/{blog:slug}', [BlogController::class, 'show'])->where('blog', '[A-z\d\-_]+');
 
-
-
 Route::get('/users/{user:username}', function (User $user) {
     return view('blogs', [
         //eager load

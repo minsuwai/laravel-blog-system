@@ -20,7 +20,7 @@ class BlogController extends Controller
             // eager load // lazy loading
             // 'blogs' => Blog::with('category', 'author')->get() 
 
-            'blogs' => Blog::latest()->filter(request(['search', 'category']))->get()
+            'blogs' => Blog::latest()->filter(request(['search', 'category', 'username']))->get()
         ]);
     }
 
