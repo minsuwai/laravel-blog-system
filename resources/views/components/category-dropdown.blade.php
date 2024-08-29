@@ -4,6 +4,12 @@
         {{isset($currentCategory) ? $currentCategory->name : 'Filter By Category'}}
     </button>
     <ul class="dropdown-menu">
+        <li>
+            <a class="dropdown-item" href="/">
+                all
+            </a>
+        </li>
+
         @foreach ($categories as $category)
         <li>
             <a class="dropdown-item"
@@ -11,7 +17,6 @@
                 {{ $category->name }}
             </a>
         </li>
-
         @endforeach
     </ul>
 </div>
