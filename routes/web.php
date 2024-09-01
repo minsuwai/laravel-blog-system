@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Blog;
@@ -20,3 +21,7 @@ Route::get('/blogs/{blog:slug}', [BlogController::class, 'show'])->where('blog',
 //         'blogs' => $user->blogs
 //     ]);
 // });
+
+
+Route::get('/register', [AuthController::class, 'create']);
+Route::post('/register', [AuthController::class, 'store']);
