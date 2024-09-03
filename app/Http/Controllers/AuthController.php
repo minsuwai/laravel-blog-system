@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
@@ -24,7 +25,17 @@ class AuthController extends Controller
         ]);
 
         $user = User::create($formData);
+
+        //login
+        auth()->login($user);
+
         // session()->flash('success', 'Welcome Dear, ' . $user->name);
         return redirect('/')->with('success', 'Welcome Dear, ' . $user->name);
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect('/')->with('success', 'Goodbye!');
     }
 }
