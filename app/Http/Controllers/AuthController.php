@@ -49,7 +49,14 @@ class AuthController extends Controller
             'password.min' => 'Password should be more than 8 characters.',
         ]);
 
-        dd($formData);
+        if (Auth::attempt($formData)) {
+            return redirect('/')->with('success', 'Welcome Back!');
+        } else {
+            return redirect()->back()->withErrors([
+                'email' => 'Wrong email',
+                'password' => 'Wrong password'
+            ]);
+        }
     }
 
 
