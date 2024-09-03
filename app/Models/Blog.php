@@ -9,9 +9,7 @@ class Blog extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    // protected $fillable = ['title', 'intro', 'body'];
 
-    // added relation from start Blog
     protected $with = ['category', 'author'];
 
     //Blog::latest()->filter()

@@ -4,9 +4,6 @@
     <h1 class="display-5 fw-bold mb-4">Blogs</h1>
     <div class="">
         <x-category-dropdown></x-category-dropdown>
-        <!-- <select name="" id="" class="p-1 rounded-pill mx-3">
-            <option value="">Filter by Tag</option>
-        </select> -->
     </div>
     <form action="" method="GET" class="my-3">
         <div class="input-group mb-3">

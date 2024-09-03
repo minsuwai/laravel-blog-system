@@ -29,10 +29,5 @@ class DatabaseSeeder extends Seeder
         // User::factory()->create();
         Blog::factory(2)->create(['category_id' => $frontend->id, 'user_id' => $mgmg->id]);
         Blog::factory(2)->create(['category_id' => $backend->id, 'user_id' => $aungaung->id]);
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }
