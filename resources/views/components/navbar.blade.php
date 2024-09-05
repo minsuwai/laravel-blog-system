@@ -11,6 +11,7 @@
             <a href="/login" class="nav-link">Login</a>
 
             @else
+            <img src="{{auth()->user()->avator}}" alt="" width="50" height="50" class="rounded-circle">
             <a href="" class="nav-link">Welcome {{auth()->user()->name}}</a>
 
             <form action="/logout" method="POST">
