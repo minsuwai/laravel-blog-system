@@ -24,3 +24,5 @@ Route::get('/login', [AuthController::class, 'login'])->middleware('guest');
 Route::post('/login', [AuthController::class, 'post_login'])->middleware('guest');
 
 Route::post('/blogs/{blog:slug}/comments', [CommentController::class, 'store']);
+
+Route::post('/blogs/{blog:slug}/subscription', [BlogController::class, 'subscriptionHandler']);
