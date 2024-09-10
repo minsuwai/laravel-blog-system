@@ -65,4 +65,9 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/')->with('success', 'Goodbye!');
     }
+
+    // public function adminIndex()
+    // {
+    //     return view('admin.dashboard');  // Make sure the view exists
+    // }
 }

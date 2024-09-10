@@ -26,3 +26,12 @@ Route::post('/login', [AuthController::class, 'post_login'])->middleware('guest'
 Route::post('/blogs/{blog:slug}/comments', [CommentController::class, 'store']);
 
 Route::post('/blogs/{blog:slug}/subscription', [BlogController::class, 'subscriptionHandler']);
+
+
+// admin routes
+use App\Http\Middleware\MustBeAdmin;
+
+Route::middleware([MustBeAdmin::class])->group(function () {
+    Route::get('/admin/blogs/create', [BlogController::class, 'create']);
+    // Add other admin routes here
+});
