@@ -3,37 +3,52 @@
 
     <div class="col-md-8 mx-auto">
         <x-card-wrapper>
-            <form action="" method="POST">
+            <form enctype="multipart/form-data" action="/admin/blogs/store" method="POST">
+                @csrf
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Title</label>
+                    <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" required name="title" value="{{old('title')}}">
                     <x-error name="title"></x-error>
                 </div>
 
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Slug</label>
+                    <label for="slug" class="form-label">Slug</label>
                     <input type="text" class="form-control" required name="slug" value="{{old('slug')}}">
                     <x-error name="slug"></x-error>
                 </div>
 
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Intro</label>
+                    <label for="intro" class="form-label">Intro</label>
                     <input type="text" class="form-control" required name="intro" value="{{old('intro')}}">
                     <x-error name="intro"></x-error>
                 </div>
 
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Body</label>
-                    <textarea name="body" id="" cols="30" rows="10" class="form-control">{{old('body')}}</textarea>
+                    <label for="body" class="form-label">Body</label>
+                    <textarea name="body" id="body" cols="30" rows="10" class="form-control">{{old('body')}}</textarea>
                     <x-error name="body"></x-error>
                 </div>
 
+                <div class="mb-3">
+                    <label for="thumbnail" class="form-label">Body</label>
+                    <input type="file" name="thumbnail" id="thumbnail" class="form-control">
+                    <x-error name="thumbnail"></x-error>
+                </div>
+
                 <div>
-                    <select name="category_id" id="" class="form-control">
+                    <label for="category" class="form-label">Category</label>
+                    <select name="category_id" id="category" class="form-control">
                         @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        <option {{$category->id==old('category_id') ? 'selected':''}}
+                            value="{{$category->id}}">{{$category->name}}</option>
                         @endforeach
                     </select>
+                    <x-error name="category_id"></x-error>
+                </div>
+
+                <div class="d-flex justify-content-start mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
                 </div>
             </form>
         </x-card-wrapper>

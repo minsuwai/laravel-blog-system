@@ -33,5 +33,8 @@ use App\Http\Middleware\MustBeAdmin;
 
 Route::middleware([MustBeAdmin::class])->group(function () {
     Route::get('/admin/blogs/create', [BlogController::class, 'create']);
+    Route::post('/admin/blogs/store', [BlogController::class, 'store']);
     // Add other admin routes here
 });
+
+Route::get('/test', [BlogController::class, 'test']);
