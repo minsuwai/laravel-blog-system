@@ -11,6 +11,10 @@
             <a href="/login" class="nav-link">Login</a>
 
             @else
+            @can ('admin')
+            <a href="/admin/blogs" class="nav-link">Dashboard</a>
+            @endcan
+
             <img src="{{auth()->user()->avator}}" alt="" width="50" height="50" class="rounded-circle">
             <a href="" class="nav-link">Welcome {{auth()->user()->name}}</a>
 
