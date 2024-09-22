@@ -33,9 +33,10 @@ Route::post('/blogs/{blog:slug}/subscription', [BlogController::class, 'subscrip
 use App\Http\Middleware\MustBeAdmin;
 
 Route::middleware([MustBeAdmin::class])->group(function () {
-    Route::get('/admin/blogs/create', [BlogController::class, 'create']);
-    Route::post('/admin/blogs/store', [BlogController::class, 'store']);
+    Route::get('/admin/blogs/create', [AdminBlogController::class, 'create']);
+    Route::post('/admin/blogs/store', [AdminBlogController::class, 'store']);
     Route::post('/admin/blogs', [AdminBlogController::class, 'index']);
+    Route::delete('/admin/blogs/{blog:slug}', [AdminBlogController::class, 'destroy']);
     // Add other admin routes here
 });
 
