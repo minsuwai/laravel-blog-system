@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
@@ -34,6 +35,7 @@ use App\Http\Middleware\MustBeAdmin;
 Route::middleware([MustBeAdmin::class])->group(function () {
     Route::get('/admin/blogs/create', [BlogController::class, 'create']);
     Route::post('/admin/blogs/store', [BlogController::class, 'store']);
+    Route::post('/admin/blogs', [AdminBlogController::class, 'index']);
     // Add other admin routes here
 });
 

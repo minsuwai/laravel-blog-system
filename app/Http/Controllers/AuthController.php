@@ -50,7 +50,11 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($formData)) {
-            return redirect('/')->with('success', 'Welcome Back!');
+            if (Auth::user()->is_admin) {
+                return redirect('/admin/blogs');
+            } else {
+                return redirect('/')->with('success', 'Welcome Back!');
+            }
         } else {
             return redirect()->back()->withErrors([
                 'email' => 'Wrong email',
