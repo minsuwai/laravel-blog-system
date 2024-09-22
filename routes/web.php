@@ -37,6 +37,9 @@ Route::middleware([MustBeAdmin::class])->group(function () {
     Route::post('/admin/blogs/store', [AdminBlogController::class, 'store']);
     Route::post('/admin/blogs', [AdminBlogController::class, 'index']);
     Route::delete('/admin/blogs/{blog:slug}', [AdminBlogController::class, 'destroy']);
+    Route::get('/admin/blogs/{blog:slug}/edit', [AdminBlogController::class, 'edit']);
+    Route::patch('/admin/blogs/{blog:slug}/update', [AdminBlogController::class, 'update']);
+
     // Add other admin routes here
 });
 
